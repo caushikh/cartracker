@@ -4,15 +4,13 @@
 	<title>Geolocation getting position</title>
 	<meta charset="utf-8">
 	<script>
-		var pos = document.getElementById('position');
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(success,error);
 		}
 		else {
-			pos.innerHTML = "Your browser does not support geolocation.";
+			document.getElementById('position').innerHTML = "Your browser does not support geolocation.";
 		}
 		function success(position) {
-			alert('got here');
 			var lat = position.coords.latitude;
 			var lng = position.coords.longitude;
 			document.getElementById('position').innerHTML = "Latitude: "+lat+"<br>Longitude: "+lng;
