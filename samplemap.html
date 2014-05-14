@@ -35,8 +35,8 @@
 			var lng = position.coords.longitude;
 			google.maps.event.addDomListener(window,'load',initialize(lat,lng));
 		}
-		function error(position) {
-			document.write("Your location could not be found.<br>");
+		function error(error) {
+			document.write("error code: "+error.code+"<br>error message: "+error.message);
 		}
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(success,error);
