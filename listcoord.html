@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geolocation getting position</title>
+	<meta charset="utf-8">
+	<script>
+		var pos = document.getElementById('position');
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(success,error);
+		}
+		else {
+			pos.innerHTML = "Your browser does not support geolocation.";
+		}
+		function success(position) {
+			alert('got here');
+			var lat = position.coords.latitude;
+			var lng = position.coords.longitude;
+			document.getElementById('position').innerHTML = "Latitude: "+lat+"<br>Longitude: "+lng;
+		}
+		function error(error) {
+			document.getElementById('position').innerHTML = "error code: "+error.code+"<br>error message: "+error.message;
+		}
+	</script>
+</head>
+<body>
+	<div id="position"></div>
+</body>
+</html>
