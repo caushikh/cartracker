@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>sample maps app</title>
-	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable="no" />
 	<meta charset="utf-8">
 	<style>
 		html, body{
@@ -23,10 +23,9 @@
 		var map;
 		function initialize(lat,lng) {
 			// create map with following map parameters
-			var loc = new google.maps.LatLng(lat,lng);
 			var mapOptions = {
-				zoom: 12,
-				center: loc
+				zoom: 10,
+				center: new google.maps.LatLng(lat,lng)
 			};
 			map = new google.maps.Map(document.getElementById('mapcanvas'), mapOptions);
 		}
