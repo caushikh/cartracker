@@ -23,9 +23,12 @@
 	<script>
 		$(document).ready(function() {
 			var map;
+			var stops = [];
+			var poly;
 			function initialize(lat,lng) {
 				// create map with following map parameters
 				var pos = new google.maps.LatLng(lat,lng);
+				stops.push(pos);
 				var mapOptions = {
 					zoom: 15,
 					center: pos
@@ -35,6 +38,13 @@
 				
 				var marker = new google.maps.Marker({
 					position: pos,
+					map: map
+				});
+  
+				poly = new google.maps.Polyline({
+					path: stops,
+					strokeColor: '#FF0000',
+					strokeWeight: 1,
 					map: map
 				});
 				
@@ -53,7 +63,13 @@
 				var lng = position.coords.longitude;
 				$("#date").text(Date());
 				var newPos = new google.maps.LatLng(lat,lng);
+				stops.push(newPos);
+				var marker = new google.maps.Marker({
+					position: newPos,
+					map: map,
+				});
 				map.setCenter(newPos);
+				poly.setPath(stops);
 			}
 			function getLocation(success,error) {
 				if (navigator.geolocation) {
