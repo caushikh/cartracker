@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Geolocation getting position at specified intervals</title>
+	<meta charset="utf-8">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+		var x = 1;
+		$(document).ready(function() {
+			if (navigator.geolocation) {
+				setInterval(function() { getLocation(success,error) }, 60000);
+			}
+			else {
+				$("#position").append("Your browser does not support geolocation.");
+			}
+			function success(position) {
+				var lat = position.coords.latitude;
+				var lng = position.coords.longitude;
+				$("#position").append(Date()+"<br>");
+				$("#position").append("Latitude: "+lat+"<br>Longitude: "+lng+"<br>");
+			}
+			function error(error) {
+				$("#position").append("error code: "+error.code+"<br>error message: "+error.message);
+			}
+			function getLocation(success,error) {
+				navigator.geolocation.getCurrentPosition(success,error);
+			}
+		});
+	</script>
+</head>
+<body>
+	<div id="position"></div>
+</body>
+</html>
