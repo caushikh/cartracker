@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sample maps app</title>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta charset="utf-8">
+	<style>
+		html, body{
+			height: 100%;
+			padding: 0px;
+		}
+		#mapcanvas {
+			height: 50%;
+			width: 50%;
+			margin: 0 auto;
+		}
+		#title {
+			text-align: center;
+		}
+	</style>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFSBkXjV3dteXXbZKZbhVzshHNd54ISUY&sensor=true"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var map;
+			function initialize(lat,lng) {
+				// create map with following map parameters
+				var mapOptions = {
+					zoom: 10,
+					center: new google.maps.LatLng(lat,lng)
+				};
+				map = new google.maps.Map(document.getElementById('mapcanvas'), mapOptions);
+				alert('in initialize');
+			}
+			function success(position) {
+				var lat = position.coords.latitude;
+				var lng = position.coords.longitude;
+				$("#date").text(Date());
+				google.maps.event.addDomListener(window,'load',initialize(lat,lng));
+			}
+			function error(error) {
+				$("#mapcanvas").append("error code: "+error.code+"<br>error message: "+error.message);
+			}
+			function updatePosition(position) {
+				alert("update");
+				var lat = position.coords.latitude;
+				var lng = position.coords.longitude;
+				$("#date").text(Date());
+				var newPos = new google.maps.LatLng(lat,lng);
+				map.setCenter(newPos);
+			}
+			function getLocation(success,error) {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(success,error);
+				}
+				else {
+					$("#mapcanvas").append("Geolocation is not supported by your browser.");
+				}
+			}
+			getLocation(success,error);
+			setInterval(function() { getLocation(updatePosition,error) }, 3000);
+		});
+	</script>
+</head>
+<body>
+	<div id="title"><h1> Here is A Map</h1></div>
+	<div id="mapcanvas"></div>
+	Last update:<br>
+	<div id="date"></div>
+</body>
+</html>
