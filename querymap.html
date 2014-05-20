@@ -25,12 +25,19 @@
 			var map;
 			function initialize(lat,lng) {
 				// create map with following map parameters
+				var pos = new google.maps.LatLng(lat,lng);
 				var mapOptions = {
-					zoom: 10,
-					center: new google.maps.LatLng(lat,lng)
+					zoom: 15,
+					center: pos
 				};
+				
 				map = new google.maps.Map(document.getElementById('mapcanvas'), mapOptions);
-				alert('in initialize');
+				
+				var marker = new google.maps.Marker({
+					position: pos,
+					map: map
+				});
+				
 			}
 			function success(position) {
 				var lat = position.coords.latitude;
@@ -42,7 +49,6 @@
 				$("#mapcanvas").append("error code: "+error.code+"<br>error message: "+error.message);
 			}
 			function updatePosition(position) {
-				alert("update");
 				var lat = position.coords.latitude;
 				var lng = position.coords.longitude;
 				$("#date").text(Date());
@@ -58,7 +64,7 @@
 				}
 			}
 			getLocation(success,error);
-			setInterval(function() { getLocation(updatePosition,error) }, 3000);
+			setInterval(function() { getLocation(updatePosition,error) }, 60000);
 		});
 	</script>
 </head>
