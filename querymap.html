@@ -5,21 +5,23 @@
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	<meta charset="utf-8">
 	<style>
-		html, body{
+		html, body, #home{
 			height: 100%;
 			padding: 0px;
 		}
 		#mapcanvas {
-			height: 50%;
-			width: 50%;
+			height: 100%;
+			width: 100%;
 			margin: 0 auto;
 		}
 		#title {
 			text-align: center;
 		}
 	</style>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFSBkXjV3dteXXbZKZbhVzshHNd54ISUY&sensor=true"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			var map;
@@ -85,9 +87,17 @@
 	</script>
 </head>
 <body>
-	<div id="title"><h1> Here is A Map</h1></div>
-	<div id="mapcanvas"></div>
-	Last update:<br>
-	<div id="date"></div>
+	<div data-role="page" id="home">
+		<div data-role="header">
+			<div id="title"><h1> Here is A Map</h1></div>
+		</div>
+		
+		<div id="mapcanvas"></div>
+		Last update:<br>
+		<div id="date"></div>
+		<div data-role="footer">
+			<h2>Copyright</h2>
+		</div>
+	</div>
 </body>
 </html>
