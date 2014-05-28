@@ -14,7 +14,7 @@
 			width: 100%;
 			margin: 0 auto;
 		}
-		#title {
+		#title, #update {
 			text-align: center;
 		}
 	</style>
@@ -93,10 +93,14 @@
 		</div>
 		
 		<div id="mapcanvas"></div>
-		Last update:<br>
-		<div id="date"></div>
-		<div data-role="footer">
-			<h2>Copyright</h2>
+		<br><br>
+		<div id="update">
+			<b>Last update:</b><br>
+			<div id="date"></div><br>
+			<button class="ui-btn" style="color:#FFFFFF; background:#FF0000">Stop Tracking</button>
+			<div data-role="footer">
+				<h2>Copyright</h2>
+			</div>
 		</div>
 	</div>
 </body>
