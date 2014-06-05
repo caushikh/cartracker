@@ -27,6 +27,7 @@
 			var map;
 			var stops = [];
 			var poly;
+			var loctimer;
 			function initialize(lat,lng) {
 				// create map with following map parameters
 				var pos = new google.maps.LatLng(lat,lng);
@@ -82,14 +83,14 @@
 				}
 			}
 			getLocation(success,error);
-			setInterval(function() { getLocation(updatePosition,error) }, 60000);
+			loctimer = setInterval(function() { getLocation(updatePosition,error) }, 60000);
 		});
 	</script>
 </head>
 <body>
 	<div data-role="page" id="home">
 		<div data-role="header">
-			<div id="title"><h1> Here is A Map</h1></div>
+			<div id="title"><h2>Device is being tracked...</h2></div>
 		</div>
 		
 		<div id="mapcanvas"></div>
@@ -97,7 +98,8 @@
 		<div id="update">
 			<b>Last update:</b><br>
 			<div id="date"></div><br>
-			<button class="ui-btn" style="color:#FFFFFF; background:#FF0000">Stop Tracking</button>
+			<button class="ui-btn" style="color:#FFFFFF; background:#FF0000" onclick="clearInterval(loctimer)">Stop Tracking</button>
+			<button class="ui-btn" style="color:#FFFFFF; background:#FF0000">Save Route</button>
 			<div data-role="footer">
 				<h2>Copyright</h2>
 			</div>
